@@ -30,9 +30,45 @@
 
 ![IMG4_FrontPage](./images/IMG4_FrontPage.png)
 
+
+
 ## 1. 合约相关代码说明
 
-### 1-1. 上架 NFT
+### 1-1. 相关依赖项与状态变量
+
+```Solidity
+// 合约层
+
+// 引入 Chainlink 的 PriceFeed 接口 AggregatorV3Interface，用于获取 ETH 的美元价格
+import "./interfaces/AggregatorV3Interface.sol";
+
+// 引入 Uniswap V2 的库 UniswapV2Library，用于读取 DEX 中某一币对的两个 token 的储备量
+import {UniswapV2Library} from "./Uniswap_v2_periphery/libraries/UniswapV2Library.sol";
+
+// 声明状态变量`priceFeedAggregator`，以实例化接口 AggregatorV3Interface
+AggregatorV3Interface internal priceFeedAggregator;
+```
+
+---
+
+### 1-2. 构造函数
+
+构造函数的参数`_priceFeedAggregatorAddr`为 PriceFeed Aggregator 地址，需要从 [**Chainlink 的 PriceFeed 官方文档的相关章节**](https://docs.chain.link/data-feeds/price-feeds/addresses?network=ethereum&page=1)查询。
+
+```Solidity
+constructor(address _tokenAddr, address _wrappedETHAddr, address _routerAddr, address _priceFeedAggregatorAddr) {
+        owner = msg.sender;
+        GTSTAddr= _tokenAddr;
+        wrappedETHAddr = _wrappedETHAddr;
+        routerAddr = _routerAddr;
+        // 指定 AggregatorV3Interface 的地址（从 Chainlink 的文档中查询）
+        priceFeedAggregator = AggregatorV3Interface(_priceFeedAggregatorAddr);
+    }
+```
+
+---
+
+### 1-3. 上架 NFT
 
 注：本合约的上架采用将 NFT 转移至合约内，并为原持有者（卖家）地址做授权来实现，而非仅做“与上架相关的某个状态变量”的值的修改（此方式亦可），特此说明。
 
@@ -63,7 +99,7 @@ function _List(address _nftAddr, uint256 _tokenId, uint256 _price) internal {
 
 ---
 
-### 1-2. 获取 ETH 当前价格
+### 1-4. 获取 ETH 当前价格
 
 ```Solidity
 // 通过 Chainlink 的 PriceFeed Aggregator 合约获取 ETH 的当前价格
@@ -81,7 +117,7 @@ function getLatestPrice_ETH_USD() public view returns (uint80 _roundId, int256 _
 
 ---
 
-### 1-3. 获取 PriceFeed Aggregator 的特定轮次的 ETH 的价格
+### 1-5. 获取 PriceFeed Aggregator 的特定轮次的 ETH 的价格
 
 ```Solidity
 // 通过 Chainlink 的 PriceFeed Aggregator 合约获取在轮次等于`_roundId`时的 ETH 的价格
@@ -99,7 +135,7 @@ function getPriceOfRound(uint80 _roundId) public view returns (int256 _price, ui
 
 ---
 
-### 1-4. 获取 NFT 的价格（以 ETH 计价，单位为 wei）
+### 1-6. 获取 NFT 的价格（以 ETH 计价，单位为 wei）
 
 #### 方法 {getNFTPrice_CountedInWETH}：计算以 wei 为单位的 NFT 价格
 
