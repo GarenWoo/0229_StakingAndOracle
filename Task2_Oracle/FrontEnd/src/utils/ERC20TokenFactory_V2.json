@@ -1,0 +1,401 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "_libraryAddress",
+        "type": "address",
+        "internalType": "address"
+      },
+      { "name": "_routerAddress", "type": "address", "internalType": "address" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  { "type": "receive", "stateMutability": "payable" },
+  {
+    "type": "function",
+    "name": "deployInscription",
+    "inputs": [
+      { "name": "_tokenName", "type": "string", "internalType": "string" },
+      { "name": "_tokenSymbol", "type": "string", "internalType": "string" },
+      {
+        "name": "_tokenTotalSupply",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "_perMint", "type": "uint256", "internalType": "uint256" },
+      { "name": "_mintFeeInETH", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getInscriptionCurrentSupply",
+    "inputs": [
+      { "name": "_tokenAddr", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getInscriptionInfo",
+    "inputs": [
+      {
+        "name": "_inscriptionAddr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct ERC20TokenFactory_V2.InscriptionStruct",
+        "components": [
+          { "name": "name", "type": "string", "internalType": "string" },
+          { "name": "symbol", "type": "string", "internalType": "string" },
+          {
+            "name": "totalSupply",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "perMint", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "mintFeeInETH",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getLPProfitAmount",
+    "inputs": [
+      {
+        "name": "_inscriptionAddr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getLPTokenAmountOnlyAddingLiquidity",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getLibraryAddress",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getPairAddress",
+    "inputs": [
+      {
+        "name": "_inscriptionAddr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getProfitFromMinting",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getProfitFromProvidingLiquidity",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "inscriptionInfo",
+    "inputs": [
+      {
+        "name": "inscriptionAddr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      { "name": "name", "type": "string", "internalType": "string" },
+      { "name": "symbol", "type": "string", "internalType": "string" },
+      { "name": "totalSupply", "type": "uint256", "internalType": "uint256" },
+      { "name": "perMint", "type": "uint256", "internalType": "uint256" },
+      { "name": "mintFeeInETH", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "maxAmountOfInscription",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "mintInscription",
+    "inputs": [
+      { "name": "_tokenAddr", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "renounceOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "routerAddress",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "setLibraryAddress",
+    "inputs": [
+      { "name": "_libraryAddr", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setMaxAmountOfInscription",
+    "inputs": [
+      { "name": "_newMaximum", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "transferOwnership",
+    "inputs": [
+      { "name": "newOwner", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "withdrawProfitFromLiquidity",
+    "inputs": [
+      { "name": "_tokenAddr", "type": "address", "internalType": "address" },
+      {
+        "name": "_LPAmountWithdrawn",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "_tokenMin", "type": "uint256", "internalType": "uint256" },
+      { "name": "_ETHMin", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "tokenAmount", "type": "uint256", "internalType": "uint256" },
+      { "name": "ETHAmount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "withdrawProfitFromMinting",
+    "inputs": [
+      { "name": "_amount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "ImpleCloned",
+    "inputs": [
+      {
+        "name": "instanceAddress",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "InscriptionMinted",
+    "inputs": [
+      {
+        "name": "inscriptAddr",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "mintedAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "liquidityAdd",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "LiquidityProfitWithdrawn",
+    "inputs": [
+      {
+        "name": "inscriptAddr",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "LPAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "tokenAmount",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "ETHAmount",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MintingProfitWithdrawn",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "withdrawnAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferred",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  { "type": "error", "name": "ERC1167FailedCreateClone", "inputs": [] },
+  {
+    "type": "error",
+    "name": "InsufficientETHGiven",
+    "inputs": [
+      { "name": "user", "type": "address", "internalType": "address" },
+      { "name": "valueSent", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InsufficientProfitOfMint",
+    "inputs": [
+      { "name": "balance", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "withdrawnAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidAmountMintedBack",
+    "inputs": [
+      { "name": "inscriptAddr", "type": "address", "internalType": "address" },
+      { "name": "mintedAmount", "type": "uint256", "internalType": "uint256" },
+      { "name": "expectedAmount", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OwnableInvalidOwner",
+    "inputs": [
+      { "name": "owner", "type": "address", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OwnableUnauthorizedAccount",
+    "inputs": [
+      { "name": "account", "type": "address", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ReachMaxSupply",
+    "inputs": [
+      { "name": "inscriptAddr", "type": "address", "internalType": "address" },
+      { "name": "currentSupply", "type": "uint256", "internalType": "uint256" },
+      { "name": "mintedAmount", "type": "uint256", "internalType": "uint256" },
+      { "name": "maxSupply", "type": "uint256", "internalType": "uint256" }
+    ]
+  }
+]

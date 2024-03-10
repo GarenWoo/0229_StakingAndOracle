@@ -447,7 +447,7 @@ contract NFTMarket_V5_1 is INFTMarket_V5_1, IERC721Receiver {
      * In this type of stake, `stakeInterestAdjusted` which represents the interest(multiplied by `MANTISSA`) of each staked ETH is maintained globally when `stakePool_SimpleStake` changes(non-zero value of `stakePool_SimpleStake` required).
      * Emits the event {WETHStaked_SimpleStake}.
      */
-    function stakeWETH_SimpleStake() public payable {
+    function stakeETH_SimpleStake() public payable {
         uint256 _stakedAmount = msg.value;
         if (_stakedAmount == 0) {
             revert stakeZero();

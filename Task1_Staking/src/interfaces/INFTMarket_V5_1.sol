@@ -423,6 +423,17 @@ interface INFTMarket_V5_1 {
     // ------------------------------------------------------ ** Stake WETH(Simple Interest) ** ------------------------------------------------------
 
     /**
+     * @notice Stake ETH with simple interest(also call the stake with simple interest 'Simple Stake').
+     *
+     * @dev The total staked(simple stake) amount of ETH will be recorded(in the form of WETH) by the state variable `stakePool_SimpleStake`.
+     * This function can stake ETH in this NFTMarket contract to earn simple interest.
+     * The simple interest comes from part of the profits of selling NFT(s) which is automatically added to `stakePool_SimpleStake`(non-zero value of `stakePool_SimpleStake` required).
+     * In this type of stake, `stakeInterestAdjusted` which represents the interest(multiplied by `MANTISSA`) of each staked ETH is maintained globally when `stakePool_SimpleStake` changes(non-zero value of `stakePool_SimpleStake` required).
+     * Emits the event {WETHStaked_SimpleStake}.
+     */
+    function stakeETH_SimpleStake() external payable;
+    
+    /**
      * @notice Stake WETH with simple interest(also call the stake with simple interest 'Simple Stake').
      *
      * @dev The total staked(simple stake) amount of WETH will be recorded by the state variable `stakePool_SimpleStake`.
@@ -447,6 +458,18 @@ interface INFTMarket_V5_1 {
 
 
     // -------------------------------------------------- ** Stake WETH(Compound Interest, Using ERC4626) ** --------------------------------------------------
+
+    /**
+     * @notice Stake ETH with compound interest and get minted shares(i.e. KKToken_Compound)(also call the stake with compound interest 'Compound Stake').
+     *
+     * @dev Implement the algorithm of ERC4626(a financial model of compound interest that reinvests the interest as principal to earn future interest) to calculate the amount of minted shares(i.e. KKToken_Compound).
+     * A simple example which has realized ERC4626 is presented at "https://solidity-by-example.org/defi/vault/".
+     * This function can stake ETH in this NFTMarket contract to earn compound interest.
+     * The compound interest comes from part of the profits of selling NFT(s) which is staked(compound stake) in this NFTMarket contract automatically without calling this function.
+     * After the stake, `msg.sender` will obtain an amount of shares. Those shares can be burnt to withdraw the staked principal and its interest back.
+     * Emits the event {WETHStaked_CompoundStake}.
+     */
+    function stakeETH_CompoundStake() external payable;
 
     /**
      * @notice Stake WETH with compound interest and get minted shares(i.e. KKToken_CompoundStake)(also call the stake with compound interest 'Compound Stake').
@@ -474,6 +497,43 @@ interface INFTMarket_V5_1 {
      * @param _sharesAmount the amount of shares that need to be burnt
      */
     function unstakeWETH_CompoundStake(uint256 _sharesAmount) external;
+
+
+    // ------------------------------------------------------------ ** Stake and Unstake(Mining) ** ------------------------------------------------------------
+
+    /**
+     * @notice Stake ETH to mine.
+     *
+     * @dev The total staked(mining) amount of ETH will be recorded by the state variable `stakePool_Mining`.
+     * This function can stake ETH in this NFTMarket contract to earn interest of mining.
+     * The interest comes from the fixed amount of mining in each block.
+     * In this type of stake, `miningInterestAdjusted` which represents the interest(multiplied by `MANTISSA`) of each staked ETH is maintained globally when `stakePool_Mining` changes(non-zero value of `stakePool_Mining` required).
+     * Emits the event {WETHStaked_Mining}.
+     */
+    function stakeETH_Mining() external payable;
+
+    /**
+     * @notice Stake WETH to mine.
+     *
+     * @dev The total staked(mining) amount of WETH will be recorded by the state variable `stakePool_Mining`.
+     * This function can stake WETH in this NFTMarket contract to earn interest of mining.
+     * The interest comes from the fixed amount of mining in each block.
+     * In this type of stake, `miningInterestAdjusted` which represents the interest(multiplied by `MANTISSA`) of each staked WETH is maintained globally when `stakePool_Mining` changes(non-zero value of `stakePool_Mining` required).
+     * Emits the event {WETHStaked_Mining}.
+     *
+     * @param _stakedAmount the staked amount of WETH
+     */
+    function stakeWETH_Mining(uint256 _stakedAmount) external;
+
+    /**
+     * @notice Unstake WETH from this NFTMarket contract(mining).
+     *
+     * @dev Unstake an amount of principal equivalent to `_unstakeAmount` and also get its corresponding interest back.
+     * Emits the event {WETHUnstaked_Mining}.
+     * 
+     * @param _unstakeAmount the unstaked amount of WETH
+     */
+    function unstakeWETH_Mining(uint256 _unstakeAmount) external;
 
 
     // ------------------------------------------------------ ** Utils ** ------------------------------------------------------
@@ -561,5 +621,15 @@ interface INFTMarket_V5_1 {
      * @notice Get the total supply of KKToken_CompoundStake(the shares of the staked ETH).
      */
     function getTotalSupplyOfShares_CompoundStake() external view returns (uint256);
+
+    /**
+     * @notice Get the total supply of KKToken_Mining.
+     */
+    function getTotalSupplyOfShares_Mining() external view returns (uint256);
+
+    /**
+     * @notice Get the total earned of mining profit of `msg.sender`.
+     */
+    function pendingEarn_Mining() external view returns (uint256);
 
 }
